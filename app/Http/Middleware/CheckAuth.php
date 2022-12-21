@@ -17,7 +17,7 @@ class CheckAuth
     public function handle($request, Closure $next)
     {
         if ($request->session()->get('Auth', null) === null) {
-            return redirect()->route('auth.login');
+            return redirect()->route('login.authenticate');
         } else {
             $users = $request->session()->get('Auth', null);
         }

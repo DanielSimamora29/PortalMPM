@@ -23,17 +23,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::middleware(['beforeauth'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
     Route::post('/login', [LoginController::class, 'login'])->name('login.authenticate');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-// Route::group(['middleware' => ['auth', 'checkRole:SuperAdmin, Admin, Pegawai']], function(){
-//     Route::get('/', [HomeController::class, 'dashboard']);
-// });
+
 
 Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     //SuperAdmin
+    Route::get('/ProfileSuperAdmin', [SuperAdminController::class, 'profile'])->name('ProfileSuperAdmin');
+    Route::get('/SettingSuperAdmin', [SuperAdminController::class, 'setting'])->name('SettingSuperAdmin');
     Route::get('/DashboardSuperAdmin', [SuperAdminController::class, 'index'])->name('DashboardSuperAdmin');
-    Route::get('/Profile', [SuperAdminController::class, 'DaftarUserAdmin'])->name('DaftarUserAdmin');
+    // Route::get('/Profile', [SuperAdminController::class, 'DaftarUserAdmin'])->name('DaftarUserAdmin');
     Route::get('/DaftarUserAdmin', [SuperAdminController::class, 'DaftarUserAdmin'])->name('DaftarUserAdmin');
     Route::get('/DaftarUserAdmin', [SuperAdminController::class, 'tampilDaftarUserAdmin'])->name('DaftarUserAdmin');
     Route::get('/DaftarUserPegawai', [SuperAdminController::class, 'DaftarUserPegawai'])->name('DaftarUserPegawai');
@@ -44,18 +44,21 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/TambahUserPegawai/add', [SuperAdminController::class, 'TambahUserPegawaiProcess'])->name('TambahUserPegawai.submit');
     Route::get('/viewAdmin/{id}', [SuperAdminController::class, 'LihatDaftarUserAdmin'])->name("LihatDaftarUserAdmin");
     Route::get('/editdataAdmin/{id}', [SuperAdminController::class, 'EditDataAdmin'])->name("EditDataAdmin");
-    Route::post('/updatedataAdmin', [SuperAdminController::class, 'UpdateDataAdmin'])->name("UpdateDataAdmin");
+    Route::post('/updatedataAdmin/{user}', [SuperAdminController::class, 'UpdateDataAdmin'])->name("UpdateDataAdmin.submit");
     Route::get('/viewPegawai/{id}', [SuperAdminController::class, 'LihatDaftarUserPegawai'])->name("LihatDaftarUserPegawai");
     Route::get('/editdataPegawai/{id}', [SuperAdminController::class, 'EditDataPegawai'])->name("EditDataPegawai");
-    Route::post('/updatedataPegawai', [SuperAdminController::class, 'UpdateDataPegawai'])->name("UpdateDataPegawai");
+    Route::post('/updatedataPegawai/{user}', [SuperAdminController::class, 'UpdateDataPegawai'])->name("UpdateDataPegawai.submit");
     
-    
+
     //Admin
-    Route::get('/DashboardAdmin', [AdminController::class, 'index'])->name('Admin.DashboardAdmin');
+    Route::get('/DashboardAdmin', [AdminController::class, 'index'])->name('DashboardAdmin');
+    Route::get('/ProfileAdmin', [AdminController::class, 'profile'])->name('ProfileAdmin');
+    Route::get('/SettingAdmin', [AdminController::class, 'setting'])->name('SettingAdmin');
   
     //Pegawai
-    Route::get('/Dashboard/Pegawai', [PegawaiController::class, 'index'])->name('Pegawai.DashboardPegawai');
-
+    Route::get('/DashboardPegawai', [PegawaiController::class, 'index'])->name('DashboardPegawai');
+    Route::get('/ProfilePegawai', [PegawaiController::class, 'profile'])->name('ProfilePegawai');
+    Route::get('/SettingPegawai', [PegawaiController::class, 'setting'])->name('SettingPegawai');
 });
 
 

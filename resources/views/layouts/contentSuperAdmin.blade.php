@@ -9,6 +9,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="@yield('style')">
+
 	<!-- Fonts and icons -->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/sc-2.0.0/datatables.min.js"></script>
@@ -72,15 +74,15 @@
 											<div class="avatar-lg"><img src="../assets/profile/default.png" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4>SuperAdmin</h4>
-												<a href="#" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+												<a href="{{route('ProfileSuperAdmin')}}" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
 											</div>
 										</div>
 									</li>
 									<li>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Account Setting</a>
+										<a class="dropdown-item" href="{{route('SettingSuperAdmin')}}"><i class="fa fa-cog"></i>&nbsp;&nbsp;<span>Account Setting</span></a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+										<a class="dropdown-item" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;<span>Logout</span></a>
 									</li>
 								</div>
 							</ul>
@@ -102,8 +104,12 @@
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									<b>SuperAdmin</b>
-									<span class="user-level">SuperAdmin</span>
+									<b>SuperAdmin
+										{{-- {{ auth()->users()->name }} --}}
+									</b>
+									<span class="user-level">SuperAdmin
+										{{-- {{ Auth::users()->username }} --}}
+									</span>
 								</span>
 							</a>
 						</div>

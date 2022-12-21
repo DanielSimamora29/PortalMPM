@@ -9,7 +9,7 @@ class Users extends Model
 {
     //
     protected $table = 'users';
-    protected $fillable = ['id'];
+    protected $fillable = ['id', 'name', 'username', 'password', 'role_id', 'plants_id', 'profile', 'dashboard_link'];
 
     public function roles(){
         return $this->belongsTo(Roles::class, "role_id", "id");

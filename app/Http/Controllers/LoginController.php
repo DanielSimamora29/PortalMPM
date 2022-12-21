@@ -33,14 +33,17 @@ class LoginController extends Controller
             if (password_verify($password, $users->password)) {
                 if ($users->roles) {
                     if ($users->roles->name === "SuperAdmin"){
+                        $user = $users;
                         session()->put('Auth', $users);
                         return redirect()->route('DashboardSuperAdmin');
                     }
                     if ($users->roles->name === "Admin"){
+                        $user = $users;
                         session()->put('Auth', $users);
                         return redirect()->route('DashboardAdmin');
                     }
                     if ($users->roles->name === "Pegawai"){
+                        $user = $users;
                         session()->put('Auth', $users);
                         return redirect()->route('DashboardPegawai');
                     }

@@ -8,8 +8,10 @@ use App\Models\Plants;
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Validator;
@@ -17,7 +19,17 @@ use Illuminate\Validation\Validator;
 class SuperAdminController extends Controller
 {
     function index(){
+        // $user = Users::find(Auth::user());
+
         return view('SuperAdmin.DashboardSuperAdmin');
+    }
+
+    function Profile(){
+        return view('SuperAdmin.profileSuperAdmin');
+    }
+
+    function setting(){
+        return view('SuperAdmin.SettingAkunSuperAdmin');
     }
 
     function DaftarUserAdmin(Request $request){
@@ -140,16 +152,19 @@ class SuperAdminController extends Controller
         ]);   
     }
 
-    function UpdateDataAdmin(Request $request) {
-        $id = $request->id;
-        DB::table('users')->where('id', $id)->update([
-            'name' => $request->tanggal_statis,
-            'username' => $request->keterangan,
+    function UpdateDataAdmin(Request $request, Users $user) {
+        
+        $updated = $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
             'role_id' => $request->role_id,
             'plants_id' => $request->plants_id,
-            'dashboard_link' => $request->dashboard_link,
+            'dashboard_link' => $request->dashboard_link
         ]);
-        return redirect('/DaftarUserAdmin')->with('success', 'Data User Admin Berhasil Diubah');
+        if($updated) {
+            return redirect('/DaftarUserAdmin')->with('success', 'Data User Admin Berhasil Diubah');
+        }
+        return redirect()->back()->with('fail', 'Gagal');
     }
 
     function LihatDaftarUserPegawai(Request $request, $id){
@@ -164,22 +179,28 @@ class SuperAdminController extends Controller
         $plant = Plants::get();
         $detail_user = Users::where("id", $id)->first();
             
-        return view('SuperAdmin.EditDaftarUserAdmin', [
+        return view('SuperAdmin.EditDaftarUserPegawai', [
             "roles" => $role,
             "plants" => $plant,
             "detail" => $detail_user
         ]);   
     }
 
-    function UpdateDataPegawai(Request $request) {
-        $id = $request->id;
-        DB::table('users')->where('id', $id)->update([
-            'name' => $request->tanggal_statis,
-            'username' => $request->keterangan,
+    function UpdateDataPegawai(Request $request, Users $user) {
+
+        $updated = $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
             'role_id' => $request->role_id,
             'plants_id' => $request->plants_id,
-            'dashboard_link' => $request->dashboard_link,
+            'dashboard_link' => $request->dashboard_link
         ]);
-        return redirect('/DaftarUserPegawai')->with('success', 'Data User Pegawai Berhasil Diubah');
+
+        if($updated) {
+            return redirect('/DaftarUserPegawai')->with('success', 'Data User Pegawai Berhasil Diubah');
+        }
+
+        return redirect()->back()->with('fail', 'Gagal');
+
     }
 }
