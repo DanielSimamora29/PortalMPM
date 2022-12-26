@@ -19,7 +19,7 @@
         <th class="col-3">Username</th>
         <th class="col-3">Role</th>
         <th class="col-3">Plant</th>
-        <th class="col-3">DashboardLink</th>
+        {{-- <th class="col-3">DashboardLink</th> --}}
         <th>Aksi</th>
         </thead>
         <tbody name="data" id="data">
@@ -43,9 +43,9 @@
                     <td>
                         {{ $daftaruser['plants']->name}}
                     </td>
-                    <td>
+                    {{-- <td>
                         {{ $daftaruser['dashboard_link']}}
-                    </td>
+                    </td> --}}
                     <td>
                         <div class="d-flex gap-3 flex-column flex-md-row">
                         <a href="/viewPegawai/{{ $daftaruser->id }}" data-toggle="tooltip" data-placement="bottom" title="Lihat daftar User Admin" 

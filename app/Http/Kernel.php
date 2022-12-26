@@ -54,8 +54,10 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        // 'auth' => \App\Http\Middleware\Authenticate::class,
         'auth' => \App\Http\Middleware\CheckAuth::class,
         'beforeauth' => \App\Http\Middleware\BeforeAuth::class,
+        'ceklevel' => \App\Http\Middleware\CekLevel::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

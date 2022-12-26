@@ -62,6 +62,46 @@ Route::middleware(['web', 'auth'])->group(function () {
 });
 
 
+// Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
+// Route::group(['middleware' => ['auth', 'ceklevel:SuperAdmin']], function() {
+//     //SuperAdmin
+//     Route::get('/ProfileSuperAdmin', [SuperAdminController::class, 'profile'])->name('ProfileSuperAdmin');
+//     Route::get('/SettingSuperAdmin', [SuperAdminController::class, 'setting'])->name('SettingSuperAdmin');
+//     Route::get('/DashboardSuperAdmin', [SuperAdminController::class, 'index'])->name('DashboardSuperAdmin');
+//     // Route::get('/Profile', [SuperAdminController::class, 'DaftarUserAdmin'])->name('DaftarUserAdmin');
+//     Route::get('/DaftarUserAdmin', [SuperAdminController::class, 'DaftarUserAdmin'])->name('DaftarUserAdmin');
+//     Route::get('/DaftarUserAdmin', [SuperAdminController::class, 'tampilDaftarUserAdmin'])->name('DaftarUserAdmin');
+//     Route::get('/DaftarUserPegawai', [SuperAdminController::class, 'DaftarUserPegawai'])->name('DaftarUserPegawai');
+//     Route::get('/DaftarUserPegawai', [SuperAdminController::class, 'tampilDaftarUserPegawai'])->name('DaftarUserPegawai');
+//     Route::get('/TambahUserAdmin/add', [SuperAdminController::class, 'TambahUserAdmin'])->name('TambahUserAdmin');
+//     Route::post('/TambahUserAdmin/add', [SuperAdminController::class, 'TambahUserAdminProcess'])->name('TambahUserAdmin.submit');
+//     Route::get('/TambahUserPegawai/add', [SuperAdminController::class, 'TambahUserPegawai'])->name('TambahUserPegawai');
+//     Route::post('/TambahUserPegawai/add', [SuperAdminController::class, 'TambahUserPegawaiProcess'])->name('TambahUserPegawai.submit');
+//     Route::get('/viewAdmin/{id}', [SuperAdminController::class, 'LihatDaftarUserAdmin'])->name("LihatDaftarUserAdmin");
+//     Route::get('/editdataAdmin/{id}', [SuperAdminController::class, 'EditDataAdmin'])->name("EditDataAdmin");
+//     Route::post('/updatedataAdmin/{user}', [SuperAdminController::class, 'UpdateDataAdmin'])->name("UpdateDataAdmin.submit");
+//     Route::get('/viewPegawai/{id}', [SuperAdminController::class, 'LihatDaftarUserPegawai'])->name("LihatDaftarUserPegawai");
+//     Route::get('/editdataPegawai/{id}', [SuperAdminController::class, 'EditDataPegawai'])->name("EditDataPegawai");
+//     Route::post('/updatedataPegawai/{user}', [SuperAdminController::class, 'UpdateDataPegawai'])->name("UpdateDataPegawai.submit");
+// });   
+    
+// Route::group(['middleware' => ['auth', 'ceklevel:Admin']], function() {
+//     //Admin
+//     Route::get('/DashboardAdmin', [AdminController::class, 'index'])->name('DashboardAdmin');
+//     Route::get('/ProfileAdmin', [AdminController::class, 'profile'])->name('ProfileAdmin');
+//     Route::get('/SettingAdmin', [AdminController::class, 'setting'])->name('SettingAdmin');
+// });
+
+// Route::group(['middleware' => ['auth', 'ceklevel:Pegawai']], function() {
+//     //Pegawai
+//     Route::get('/DashboardPegawai', [PegawaiController::class, 'index'])->name('DashboardPegawai');
+//     Route::get('/ProfilePegawai', [PegawaiController::class, 'profile'])->name('ProfilePegawai');
+//     Route::get('/SettingPegawai', [PegawaiController::class, 'setting'])->name('SettingPegawai');
+// });
+
+
+
 Route::fallback(function () {
     abort(404);
 });

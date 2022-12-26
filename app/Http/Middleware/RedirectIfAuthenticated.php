@@ -17,20 +17,29 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
+    // public function handle(Request $request, Closure $next, ...$guards)
+    // {
+    //     if ($request->session()->get('Auth', null) !== null) {
+    //         $users = session()->get('Auth', null);
+    //         if ($users->roles) {
+    //             if ($users->roles->name === "SuperAdmin") {
+    //                 return redirect()->route('DashboardSuperAdmin');
+    //             }
+    //         } else {
+    //             return redirect()->route('home.index');
+    //         }
+    //     } else {
+    //         $users = null;
+    //     }
+    //     return $next($request);
+    // }
+
+    public function handle($request, Closure $next, $guard = null)
     {
-        if ($request->session()->get('Auth', null) !== null) {
-            $users = session()->get('Auth', null);
-            if ($users->roles) {
-                if ($users->roles->name === "SuperAdmin") {
-                    return redirect()->route('DashboardSuperAdmin');
-                }
-            } else {
-                return redirect()->route('home.index');
-            }
-        } else {
-            $users = null;
+        if (Auth::guard($guard)->check()) {
+            return redirect(RouteServiceProvider::SUPERADMIN);
         }
+
         return $next($request);
     }
 }

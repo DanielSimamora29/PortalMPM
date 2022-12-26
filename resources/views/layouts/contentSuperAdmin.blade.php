@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>PT Maritim Prima Mandiri</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="../assets/img/iconmpm.png" type="image/x-icon"/>
+	<link rel="icon" href="../assets/img/icon.png" type="image/x-icon"/>
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/sc-2.0.0/datatables.min.css"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -105,7 +105,7 @@
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									<b>SuperAdmin
-										{{-- {{ auth()->users()->name }} --}}
+										{{-- {{ Auth::users()->name }} --}}
 									</b>
 									<span class="user-level">SuperAdmin
 										{{-- {{ Auth::users()->username }} --}}

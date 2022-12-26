@@ -24,6 +24,8 @@ class LoginController extends Controller
 
     function login(Request $request)
     {           
+        // dd($request->all());
+
         $username = $request->username;
         $password = $request->password;
         
@@ -55,4 +57,36 @@ class LoginController extends Controller
             return redirect()->back()->withErrors(["message" => "Username Tidak terdaftar"])->withInput();
        }
     }
+
+
+    // function login(Request $request)
+    // {          
+        
+    //     $users = Users::all()->first();
+    //     $credentials = $request->validate([
+    //         'username' => ['required', 'email'],
+    //         'password' => ['required'],
+    //         ]);
+
+    //     if (Auth::attempt($credentials)) {
+    //         if ($users->roles) {
+    //             if ($users->roles->name === "SuperAdmin"){
+    //                 $request->session()->regenerate();
+    //                 return redirect()->route('DashboardSuperAdmin');
+    //             }
+    //             if ($users->roles->name === "Admin"){
+    //                 $request->session()->regenerate();
+    //                 return redirect()->route('DashboardAdmin');
+    //             }
+    //             if ($users->roles->name === "Pegawai"){
+    //                 $request->session()->regenerate();
+    //                 return redirect()->route('DashboardPegawai');
+    //             }
+    //         }
+    //     } else {
+    //         return redirect()->back()->withErrors(["message" => "Password salah"])->withInput();
+    //     }
+    // }
+
+
 }
